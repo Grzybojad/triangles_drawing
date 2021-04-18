@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
-        Title="WPF triangles" Height="400" Width="800">
-    <Grid>
-        <Image Name="ImageCanvas1" Width="360" Height="360" VerticalAlignment="Center" HorizontalAlignment="Left"></Image>
+        Title="WPF triangles" Height="500" Width="800">
+    <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="450" />
+        </Grid.RowDefinitions>
         
-        <Image Name="ImageCanvas2" Width="360" Height="360" VerticalAlignment="Center" HorizontalAlignment="Right"></Image>
+        <TextBlock FontSize="20" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Część 1</TextBlock>
+        <TextBlock FontSize="20" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Część 2</TextBlock>
+        <Image Name="ImageCanvas1" Width="360" Height="360" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"></Image>
+        <Image Name="ImageCanvas2" Width="360" Height="360" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"></Image>
     </Grid>
 </Window>
