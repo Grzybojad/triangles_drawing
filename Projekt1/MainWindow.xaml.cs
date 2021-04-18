@@ -1,5 +1,7 @@
-﻿using System.Numerics;
+﻿using System.IO;
+using System.Numerics;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using Projekt1.Scripts;
 using Point = Projekt1.Scripts.Point;
 
@@ -19,11 +21,13 @@ namespace Projekt1
 			ShapesPainting a = new ShapesPainting();
 			PaintingCanvas part1Canvas = a.PaintRedGreenTriangles( redTriangle, greenTriangle );
 			ImageCanvas1.Source = part1Canvas.WriteableBitmap;
+			SaveBitmapToFile( "czesc1.png", part1Canvas.WriteableBitmap );
 
 			RotateTriangles( 90, 5, 61 );
 			PaintingCanvas part2Canvas = a.PaintRedGreenTriangles( redTriangle, greenTriangle );
 				
 			ImageCanvas2.Source = part2Canvas.WriteableBitmap;
+			SaveBitmapToFile( "czesc2.png", part2Canvas.WriteableBitmap );
 		}
 
 		void CreateTriangles()
@@ -45,6 +49,16 @@ namespace Projekt1
 
 			redTriangle = Triangle.MultiplyTriangleByMatrix( redTriangle, h );
 			greenTriangle = Triangle.MultiplyTriangleByMatrix( greenTriangle, h );
+		}
+		
+		void SaveBitmapToFile(string filename, BitmapSource image)
+		{
+			if( filename == string.Empty ) return;
+
+			using FileStream stream = new FileStream( filename, FileMode.Create );
+			PngBitmapEncoder encoder = new PngBitmapEncoder();
+			encoder.Frames.Add( BitmapFrame.Create( image ) );
+			encoder.Save( stream );
 		}
 	}
 }
